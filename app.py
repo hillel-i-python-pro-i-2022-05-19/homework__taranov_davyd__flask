@@ -26,14 +26,14 @@ def read_README() -> str:
 
 
 @app.route('/generate-users')
-def generate_users_100(amount: int = 100) -> str:
+def generate_users(amount: int = 100) -> str:
     users = [faker.unique.first_name() for _ in range(amount)]
     return ''.join(f"""<p>{user} {str(user).lower()}@mail.co</p>""" for user in users)
 
 
 @app.route('/generate-users/<int:amount>')
 def generate_users(amount: int):
-    return generate_users_100(amount)
+    return generate_users(amount)
 
 
 @app.route('/astronauts-with-requests')
