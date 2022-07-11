@@ -32,7 +32,7 @@ def generate_users(amount: int = 100) -> str:
 
 
 @app.route('/generate-users/<int:amount>')
-def generate_users(amount: int):
+def generate_users_by_amount(amount: int) -> str:
     return generate_users(amount)
 
 
