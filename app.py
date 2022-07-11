@@ -1,6 +1,6 @@
 import csv
-import json
 import aiohttp
+import asyncio
 import io
 import requests
 from flask import Flask
@@ -56,6 +56,13 @@ def astronauts_with_requests() -> str:
 #             resp = json.loads(res).get("number")
 #
 #     return f'Количество космонавтов в данный момент: {resp}'
+
+
+@app.route('/astronauts-with-aiohttp')
+async def astronauts_with_aiohttp():
+    async with aiohttp.ClientSession() as session:
+        async with session.get(SPACE_API) as response:
+            return f'Количество космонавтов в данный момент:'
 
 @app.route('/characteristics')
 def characteristics() -> str:
