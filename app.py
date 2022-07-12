@@ -1,4 +1,6 @@
 import csv
+import json
+
 import aiohttp
 import asyncio
 import io
@@ -25,10 +27,13 @@ def read_README() -> str:
     return str(data)
 
 
-@app.route('/generate-users')
+@app.route('/generate-users/')
 def generate_users(amount: int = 100) -> str:
     users = [faker.unique.first_name() for _ in range(amount)]
-    return ''.join(f"""<p>{user} {str(user).lower()}@mail.co</p>""" for user in users)
+    new_user = ''
+    for user in users:
+        new_user += ''.join(f"""<p>{user} {str(user).lower()}@mail.co</p>""")
+    return new_user
 
 
 @app.route('/generate-users/<int:amount>')
@@ -47,22 +52,6 @@ def astronauts_with_requests() -> str:
     <ul>Имена: {names}</ul>
 """
 
-
-# @app.route('/astronauts-with-aiohttp')
-# async def astronauts_with_aiohttp()->str:
-#     async with aiohttp.ClientSession() as session:
-#         async with session.get(SPACE_API) as response:
-#             res = await response.text()
-#             resp = json.loads(res).get("number")
-#
-#     return f'Количество космонавтов в данный момент: {resp}'
-
-
-@app.route('/astronauts-with-aiohttp')
-async def astronauts_with_aiohttp():
-    async with aiohttp.ClientSession() as session:
-        async with session.get(SPACE_API) as response:
-            return f'Количество космонавтов в данный момент:'
 
 @app.route('/characteristics')
 def characteristics() -> str:
