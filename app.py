@@ -7,12 +7,11 @@ import io
 import requests
 from flask import Flask
 from faker import Faker
-from settings import ROOT_PATH
+from settings import ROOT_PATH, SPACE_API, CHARACTERISTICS_URL
 
 app = Flask(__name__)
 faker = Faker()
-SPACE_API = 'http://api.open-notify.org/astros.json'
-CHARACTERISTICS_URL = 'https://drive.google.com/uc?export=download&id=1yM0a4CSf0iuAGOGEljdb7qcWyz82RBxl'
+
 
 
 @app.route('/read-lesson')
