@@ -32,7 +32,7 @@ def generate_users(amount: int = 100) -> str:
     users = [faker.unique.first_name() for _ in range(amount)]
     new_user = ''
     for user in users:
-        new_user += ''.join(f"""<p>{user} {str(user).lower()}@mail.co</p>""")
+        new_user += f"""<p>{user} {str(user).lower()}@mail.co</p>"""
     return new_user
 
 
@@ -47,7 +47,7 @@ def astronauts_with_requests() -> str:
     result = response.json()
     names = ''
     for people in result["people"]:
-        names += ''.join(f"<li>{people['name']}</li>")
+        names += f"<li>{people['name']}</li>"
     return f"""<h1>Количество астронавтов: {result['number']}</h1>
     <ul>Имена: {names}</ul>
 """
