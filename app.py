@@ -1,8 +1,4 @@
 import csv
-import json
-
-import aiohttp
-import asyncio
 import io
 import requests
 from flask import Flask
