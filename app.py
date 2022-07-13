@@ -12,7 +12,7 @@ faker = Faker()
 
 @app.route('/read-lesson')
 def read_lesson() -> str:
-    return ROOT_PATH.joinpath('lesson.py').read_text()
+    return ROOT_PATH.joinpath('lesson_4.py').read_text()
 
 
 @app.route('/read-README')
