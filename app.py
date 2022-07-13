@@ -36,11 +36,6 @@ def generate_users(args: int) -> str:
     return new_user
 
 
-# @app.route('/generate-users/<int:amount>')
-# def generate_users_by_amount(amount: int) -> str:
-#     return generate_users(amount)
-
-
 @app.route('/astronauts-with-requests')
 def astronauts_with_requests() -> str:
     response = requests.get(SPACE_API)
