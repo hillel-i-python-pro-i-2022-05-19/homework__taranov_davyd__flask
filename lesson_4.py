@@ -1,8 +1,10 @@
 import random
+
 import requests
 from flask import Flask
 from webargs import fields
 from webargs.flaskparser import use_args
+
 from constants import PASSWORD_CHARACTERS
 from settings import ROOT_PATH
 

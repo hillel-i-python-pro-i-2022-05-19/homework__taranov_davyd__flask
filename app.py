@@ -1,10 +1,12 @@
 import csv
 import io
+
 import requests
-from flask import Flask
 from faker import Faker
-from webargs.flaskparser import use_args
+from flask import Flask
 from webargs import fields
+from webargs.flaskparser import use_args
+
 from settings import ROOT_PATH
 
 SPACE_API = 'http://api.open-notify.org/astros.json'
