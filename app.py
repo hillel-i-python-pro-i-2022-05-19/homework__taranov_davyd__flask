@@ -3,11 +3,15 @@ import io
 import requests
 from flask import Flask
 from faker import Faker
-from settings import ROOT_PATH, SPACE_API, CHARACTERISTICS_URL
+from webargs.flaskparser import use_args
+from webargs import fields
+from settings import ROOT_PATH
+
+SPACE_API = 'http://api.open-notify.org/astros.json'
+CHARACTERISTICS_URL = 'https://drive.google.com/uc?export=download&id=1yM0a4CSf0iuAGOGEljdb7qcWyz82RBxl'
 
 app = Flask(__name__)
 faker = Faker()
-
 
 
 @app.route('/read-lesson')
@@ -22,18 +26,19 @@ def read_README() -> str:
     return str(data)
 
 
-@app.route('/generate-users/')
-def generate_users(amount: int = 100) -> str:
-    users = [faker.unique.first_name() for _ in range(amount)]
+@app.route('/generate-users-users')
+@use_args({"amount": fields.Int(missing=100)}, location="query")
+def generate_users(args: int) -> str:
+    users = [faker.unique.first_name() for _ in range(args['amount'])]
     new_user = ''
     for user in users:
         new_user += f"""<p>{user} {str(user).lower()}@mail.co</p>"""
     return new_user
 
 
-@app.route('/generate-users/<int:amount>')
-def generate_users_by_amount(amount: int) -> str:
-    return generate_users(amount)
+# @app.route('/generate-users/<int:amount>')
+# def generate_users_by_amount(amount: int) -> str:
+#     return generate_users(amount)
 
 
 @app.route('/astronauts-with-requests')
