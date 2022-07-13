@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Flask" type="Python.FlaskServer">
     <option name="flaskDebug" value="true" />
-    <option name="target" value="$PROJECT_DIR$/app.py" />
+    <option name="target" value="$PROJECT_DIR$/lesson_4.py" />
     <option name="targetType" value="PATH" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
