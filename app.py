@@ -26,7 +26,7 @@ def read_README() -> str:
     return str(data)
 
 
-@app.route('/generate-users-users')
+@app.route('/generate-users')
 @use_args({"amount": fields.Int(missing=100)}, location="query")
 def generate_users(args: int) -> str:
     users = [faker.unique.first_name() for _ in range(args['amount'])]
