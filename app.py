@@ -14,12 +14,12 @@ app = Flask(__name__)
 faker = Faker()
 
 
-@app.route('/read-lesson')
+@app.route('/read-file-README')
 def read_lesson() -> str:
-    return ROOT_PATH.joinpath('lesson_4.py').read_text()
+    return ROOT_PATH.joinpath('README.md').read_text()
 
 
-@app.route('/read-README')
+@app.route('/read-file-README-classical-method')
 def read_README() -> str:
     with open('README.md', 'r') as file:
         data = file.readlines()
@@ -27,7 +27,7 @@ def read_README() -> str:
 
 
 @app.route('/generate-users/')
-@use_args({'amount': fields.Int(missing=10)}, location="query")
+@use_args({'amount': fields.Int(missing=100)}, location="query")
 def generate_users(args: int) -> str:
     users_list = [faker.unique.first_name() for _ in range(args['amount'])]
     formatted_users_list = [f"""<p>{user} {str(user).lower()}@mail.co</p>""" for user in users_list]
