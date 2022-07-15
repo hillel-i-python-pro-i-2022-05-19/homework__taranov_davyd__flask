@@ -7,10 +7,8 @@ from flask import Flask
 from webargs import fields
 from webargs.flaskparser import use_args
 
+from constants import SPACE_API, CHARACTERISTICS_URL
 from settings import ROOT_PATH
-
-SPACE_API = 'http://api.open-notify.org/astros.json'
-CHARACTERISTICS_URL = 'https://drive.google.com/uc?export=download&id=1yM0a4CSf0iuAGOGEljdb7qcWyz82RBxl'
 
 app = Flask(__name__)
 faker = Faker()
@@ -28,25 +26,22 @@ def read_README() -> str:
     return str(data)
 
 
-@app.route('/generate-users')
-@use_args({"amount": fields.Int(missing=100)}, location="query")
+@app.route('/generate-users/')
+@use_args({'amount': fields.Int(missing=10)}, location="query")
 def generate_users(args: int) -> str:
-    users = [faker.unique.first_name() for _ in range(args['amount'])]
-    new_user = ''
-    for user in users:
-        new_user += f"""<p>{user} {str(user).lower()}@mail.co</p>"""
-    return new_user
+    users_list = [faker.unique.first_name() for _ in range(args['amount'])]
+    formatted_users_list = [f"""<p>{user} {str(user).lower()}@mail.co</p>""" for user in users_list]
+    new_users = ''.join(formatted_users_list)
+    return new_users
 
 
 @app.route('/astronauts-with-requests')
 def astronauts_with_requests() -> str:
     response = requests.get(SPACE_API)
     result = response.json()
-    names = ''
-    for people in result["people"]:
-        names += f"<li>{people['name']}</li>"
+    people_list = ''.join([f"<li>{people['name']}</li>" for people in result["people"]])
     return f"""<h1>Количество астронавтов: {result['number']}</h1>
-    <ul>Имена: {names}</ul>
+    <ul>Имена: {people_list}</ul>
 """
 
 
