@@ -33,7 +33,7 @@ def read_README() -> str:
 
 
 @app.route('/generate-users/')
-@use_args({'amount': fields.Int(missing=10)}, location="query")
+@use_args({'amount': fields.Int(missing=100)}, location="query")
 def generate_users(args: int) -> str:
     users_list = [faker.unique.first_name() for _ in range(args['amount'])]
     formatted_users_list = [f"""<p>{user} {str(user).lower()}@mail.co</p>""" for user in users_list]
