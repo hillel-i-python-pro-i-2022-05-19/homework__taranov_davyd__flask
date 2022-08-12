@@ -22,12 +22,9 @@ class Connection:
         self._connection.close()
 
 
-
 @app.route('/')
 def hello():
     return 'Hello'
-
-
 
 
 @app.route('/phones/create/')
@@ -47,6 +44,7 @@ def phones__read_all():
     with Connection() as connection:
         phones = connection.execute("SELECT * FROM phones;").fetchall()
     return '<br>'.join([f'''{phone['phoneID']}: {phone['contactName']} - {phone['phoneValue']}''' for phone in phones])
+
 
 @app.route('/phones/update/<int:phoneID>')
 @use_args({"phoneValue": fields.Int(required=True), "contactName": fields.Str(required=True)}, location="query")
