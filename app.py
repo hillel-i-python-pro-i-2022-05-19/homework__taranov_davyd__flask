@@ -22,6 +22,14 @@ class Connection:
         self._connection.close()
 
 
+
+@app.route('/')
+def hello():
+    return 'Hello'
+
+
+
+
 @app.route('/phones/create/')
 @use_args({"contactName": fields.Str(required=True), "phoneValue": fields.Int(required=True)}, location="query")
 def phones__create(args):
@@ -66,4 +74,4 @@ def phones__delete(phoneID):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', debug=True)
