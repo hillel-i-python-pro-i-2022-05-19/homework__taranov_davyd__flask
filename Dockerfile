@@ -24,5 +24,3 @@ COPY --chown=${USER} ./settings.py settings.py
 USER ${USER}
 
 ENTRYPOINT [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
-
-#ENTRYPOINT FLASK_APP=app flask run --host=0.0.0.0
