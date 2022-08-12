@@ -24,4 +24,4 @@ COPY --chown=${USER} ./README.md README.md
 
 USER ${USER}
 
-ENTRYPOINT ["python", "app.py"]
+ENTRYPOINT [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
