@@ -13,6 +13,10 @@ from settings import ROOT_PATH
 app = Flask(__name__)
 faker = Faker()
 
+@app.route('/')
+def hello():
+    return 'Hello'
+
 
 @app.route('/read-file-README')
 def read_lesson() -> str:
