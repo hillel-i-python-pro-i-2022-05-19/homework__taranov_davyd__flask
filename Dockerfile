@@ -20,7 +20,6 @@ RUN pip install --upgrade pip && \
 COPY --chown=${USER} ./app.py app.py
 COPY --chown=${USER} ./settings.py settings.py
 COPY --chown=${USER} ./constants.py constants.py
-COPY --chown=${USER} ./README.md README.md
 
 USER ${USER}
 
