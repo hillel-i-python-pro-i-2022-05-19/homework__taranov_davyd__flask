@@ -1,4 +1,4 @@
-# Project on a flask with a sqlite 
+# Project on a Flask with a SQLite 
 
 ___
 
